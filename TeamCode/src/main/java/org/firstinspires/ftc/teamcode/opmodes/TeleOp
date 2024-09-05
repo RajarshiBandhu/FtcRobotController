@@ -1,0 +1,27 @@
+package org.firstinspires.ftc.teamcode.OpModes;
+
+import com.arcrobotics.ftclib.gamepad.GamepadEx;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp
+public class TeleOp extends OpMode
+{
+    private GamepadEx driver, operator;
+
+    @Override
+    public void init()
+    {
+        telemetry.setMsTransmissionInterval(50);
+        driver = new GamepadEx(gamepad1);
+        operator = new GamepadEx(gamepad2);
+
+    }
+    @Override
+    public void loop() {
+        driver.readButtons();
+        operator.readButtons();
+        robot.drivetrain.fieldCentric(driver);
+
+    }
+
+}
